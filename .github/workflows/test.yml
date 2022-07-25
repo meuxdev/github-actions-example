@@ -1,0 +1,18 @@
+name: build-test # Name of this action.
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['16'] # Node version
+    steps:
+      - uses: actions/checkout@v2 # including github actions.
+      - name: Setup Node 16 ✔️
+      - uses: actions/setup-node@v2
+      - with:
+        node-version: 16.x # any version form 16
+      - run: npm install # install dependencies
+      - run: npm run lint # runs lint
